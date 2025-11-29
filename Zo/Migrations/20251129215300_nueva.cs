@@ -11,7 +11,7 @@ namespace Zo.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Especie",
+                name: "Especies",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -24,7 +24,7 @@ namespace Zo.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Raza",
+                name: "Razas",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -37,7 +37,7 @@ namespace Zo.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Animal",
+                name: "Animals",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -54,25 +54,25 @@ namespace Zo.Migrations
                     table.ForeignKey(
                         name: "FK_Animal_Especie_EspecieId",
                         column: x => x.EspecieId,
-                        principalTable: "Especie",
+                        principalTable: "Especies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Animal_Raza_RazaId",
                         column: x => x.RazaId,
-                        principalTable: "Raza",
+                        principalTable: "Razas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Animal_EspecieId",
-                table: "Animal",
+                table: "Animals",
                 column: "EspecieId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Animal_RazaId",
-                table: "Animal",
+                table: "Animals",
                 column: "RazaId");
         }
 
@@ -80,13 +80,13 @@ namespace Zo.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Animal");
+                name: "Animals");
 
             migrationBuilder.DropTable(
-                name: "Especie");
+                name: "Especies");
 
             migrationBuilder.DropTable(
-                name: "Raza");
+                name: "Razas");
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Zo.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Modelos.Animal", b =>
+            modelBuilder.Entity("Modelos.Animals", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -54,10 +54,10 @@ namespace Zo.Migrations
 
                     b.HasIndex("RazaId");
 
-                    b.ToTable("Animal");
+                    b.ToTable("Animals");
                 });
 
-            modelBuilder.Entity("Modelos.Especie", b =>
+            modelBuilder.Entity("Modelos.Especies", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -71,10 +71,10 @@ namespace Zo.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Especie");
+                    b.ToTable("Especies");
                 });
 
-            modelBuilder.Entity("Modelos.Raza", b =>
+            modelBuilder.Entity("Modelos.Razas", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -88,34 +88,34 @@ namespace Zo.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Raza");
+                    b.ToTable("Razas");
                 });
 
-            modelBuilder.Entity("Modelos.Animal", b =>
+            modelBuilder.Entity("Modelos.Animals", b =>
                 {
-                    b.HasOne("Modelos.Especie", "Especie")
+                    b.HasOne("Modelos.Especies", "Especies")
                         .WithMany("Animales")
                         .HasForeignKey("EspecieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Modelos.Raza", "Raza")
+                    b.HasOne("Modelos.Razas", "Razas")
                         .WithMany("Animales")
                         .HasForeignKey("RazaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Especie");
+                    b.Navigation("Especies");
 
-                    b.Navigation("Raza");
+                    b.Navigation("Razas");
                 });
 
-            modelBuilder.Entity("Modelos.Especie", b =>
+            modelBuilder.Entity("Modelos.Especies", b =>
                 {
                     b.Navigation("Animales");
                 });
 
-            modelBuilder.Entity("Modelos.Raza", b =>
+            modelBuilder.Entity("Modelos.Razas", b =>
                 {
                     b.Navigation("Animales");
                 });

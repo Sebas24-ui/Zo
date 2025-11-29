@@ -22,33 +22,51 @@ namespace Zo.Controllers
 
         // GET: api/Razas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Raza>>> GetRaza()
+        public async Task<ActionResult<ApiResult<List<Raza>>>> GetRaza()
         {
-            return await _context.Raza.ToListAsync();
+            try
+
+            {
+                var data = await _context.Razas.ToListAsync();
+                return ApiResult<List<Raza>>.Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return ApiResult<List<Raza>>.Fail(ex.Message);
+            }
         }
 
         // GET: api/Razas/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Raza>> GetRaza(int id)
+        public async Task<ActionResult<ApiResult<Raza>>> GetRaza(int id)
         {
-            var raza = await _context.Raza.FindAsync(id);
-
-            if (raza == null)
+            try
             {
-                return NotFound();
-            }
+                var raza = await _context.Razas
+                    .Include(r => r.Animales)
+                    .FirstOrDefaultAsync(r => r.Id == id);
 
-            return raza;
+                if (raza == null)
+                {
+                    return ApiResult<Raza>.Fail("Datos no encontrados");
+                }
+
+                return ApiResult<Raza>.Ok(raza);
+            }
+            catch (Exception ex)
+            {
+                return ApiResult<Raza>.Fail(ex.Message);
+            }
         }
 
         // PUT: api/Razas/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRaza(int id, Raza raza)
+        public async Task<ActionResult<ApiResult<Raza>>> PutRaza(int id, Raza raza)
         {
             if (id != raza.Id)
             {
-                return BadRequest();
+                return ApiResult<Raza>.Fail("ID no coincide");
             }
 
             _context.Entry(raza).State = EntityState.Modified;
@@ -57,51 +75,67 @@ namespace Zo.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
-                if (!RazaExists(id))
+                if (!await RazaExists(id))
                 {
-                    return NotFound();
+                    return ApiResult<Raza>.Fail("Datos no encontrados ");
                 }
                 else
                 {
-                    throw;
+                    return ApiResult<Raza>.Fail(ex.Message);
                 }
             }
 
-            return NoContent();
+            return ApiResult<Raza>.Ok(raza);
         }
 
         // POST: api/Razas
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Raza>> PostRaza(Raza raza)
+        public async Task<ActionResult<ApiResult<Raza>>> PostRaza(Raza raza)
         {
-            _context.Raza.Add(raza);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Razas.Add(raza);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetRaza", new { id = raza.Id }, raza);
+                return ApiResult<Raza>.Ok(raza);
+            }
+            catch (Exception ex)
+            {
+                return ApiResult<Raza>.Fail(ex.Message);
+
+            }
         }
 
         // DELETE: api/Razas/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRaza(int id)
+        public async Task<ActionResult<ApiResult<Raza>>> DeleteRaza(int id)
         {
-            var raza = await _context.Raza.FindAsync(id);
-            if (raza == null)
+            try
             {
-                return NotFound();
+                var raza = await _context.Razas.FindAsync(id);
+                if (raza == null)
+                {
+                    return ApiResult<Raza>.Fail("Datos no encontrados");
+                }
+
+                _context.Razas.Remove(raza);
+                await _context.SaveChangesAsync();
+
+                return ApiResult<Raza>.Ok(null);
             }
-
-            _context.Raza.Remove(raza);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            catch (Exception ex)
+            {
+                return ApiResult<Raza>.Fail(ex.Message);
+            }
         }
 
-        private bool RazaExists(int id)
+
+        private async Task<bool> RazaExists(int id)
         {
-            return _context.Raza.Any(e => e.Id == id);
+            return await _context.Razas.AnyAsync(e => e.Id == id);
         }
     }
 }
