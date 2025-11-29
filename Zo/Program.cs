@@ -1,5 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Builder; // Necesario para WebApplication
+using Microsoft.Extensions.Configuration;
+using System;
+using Zo; // Asumo que ZoContext está en la carpeta Data
+using Newtonsoft.Json;
 
 namespace Zo
 {
@@ -22,6 +27,10 @@ namespace Zo
                  options.SerializerSettings.ReferenceLoopHandling
                  = Newtonsoft.Json.ReferenceLoopHandling.Ignore
              );
+<<<<<<< HEAD
+=======
+            //sdfsdfsd
+>>>>>>> Cambio
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
