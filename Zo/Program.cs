@@ -27,10 +27,9 @@ namespace Zo
                  options.SerializerSettings.ReferenceLoopHandling
                  = Newtonsoft.Json.ReferenceLoopHandling.Ignore
              );
-<<<<<<< HEAD
-=======
+
             //sdfsdfsd
->>>>>>> Cambio
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
