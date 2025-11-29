@@ -1,0 +1,6 @@
+@Zo_HostAddress = http://localhost:5114
+
+GET {{Zo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

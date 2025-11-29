@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35818.85 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zo", "Zo\Zo.csproj", "{0783E2B6-7442-4064-986A-BB193C1C7B6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modelos", "Modelos\Modelos.csproj", "{419AAC2C-D5A2-4B7F-86C2-350DDBE4D7DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0783E2B6-7442-4064-986A-BB193C1C7B6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0783E2B6-7442-4064-986A-BB193C1C7B6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0783E2B6-7442-4064-986A-BB193C1C7B6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0783E2B6-7442-4064-986A-BB193C1C7B6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{419AAC2C-D5A2-4B7F-86C2-350DDBE4D7DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{419AAC2C-D5A2-4B7F-86C2-350DDBE4D7DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{419AAC2C-D5A2-4B7F-86C2-350DDBE4D7DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{419AAC2C-D5A2-4B7F-86C2-350DDBE4D7DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F41BB4D9-7DDE-45B6-AA36-BBD5DCA814E7}
+	EndGlobalSection
+EndGlobal
