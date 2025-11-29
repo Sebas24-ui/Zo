@@ -11,7 +11,7 @@ using Modelos;
             : base(options)
         {
         }
-
+    //erht 
 
         public DbSet<Animal> Animals { get; set; } = default!;
 
